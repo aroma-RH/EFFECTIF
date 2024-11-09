@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>نموذج إدخال البيانات</title>
+    
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&display=swap');
@@ -174,10 +174,10 @@
         <div class="dropdown">
             <button class="dropbtn">MENU</button>
             <div id="dropdownOptions" class="dropdown-content">
-                <a href="#" id="effectif1">EFFECTIF 1</a>
-                <!-- Nested dropdown content under EFFECTIF 1 -->
+                <a href="#" id="effectif1">EFFECTIF</a>
+               
                 <div id="nestedEffectif1" class="nested-dropdown">
-                    <!-- Dynamically generated Finca options -->
+                    
                     <a href="#" id="finca1">FINCA 01</a>
                 <a href="#" id="finca2">FINCA 02</a>
                 <a href="#" id="finca3">FINCA 03</a>
@@ -325,20 +325,20 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
-         // Toggle visibility of the main dropdown content
+      
     document.querySelector(".dropbtn").addEventListener("click", function() {
         var dropdownContent = document.getElementById("dropdownOptions");
         dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block";
     });
 
-    // Toggle visibility of the nested dropdown under "EFFECTIF 1"
+    
     document.getElementById("effectif1").addEventListener("click", function(event) {
         event.preventDefault();  // Prevent default link action
         var nestedDropdown = document.getElementById("nestedEffectif1");
         nestedDropdown.style.display = nestedDropdown.style.display === "block" ? "none" : "block";
     });
 
-    // Close the dropdown if clicked outside
+   
     window.addEventListener("click", function(event) {
         if (!event.target.matches('.dropbtn') && !event.target.matches('#effectif1')) {
             var dropdowns = document.getElementsByClassName("dropdown-content");
@@ -354,15 +354,15 @@
 
         $(document).ready(function() {
             $('#equipe').select2({
-                placeholder: "ابحث عن الفريق...",
+                placeholder: "Rechercher l'équipe...",
                 allowClear: true
             });
             $('#finca').select2({
-                placeholder: "ابحث عن Finca...",
+                placeholder: "Rechercher Finca...",
                 allowClear: true
             });
             $('#tarea').select2({
-                placeholder: "ابحث عن تاسك...",
+                placeholder: "Rechercher LA Tache...",
                 allowClear: true
             });
         });
@@ -395,6 +395,8 @@
             })
             .then(response => alert("Les données ont été envoyées avec succès!"))
             .catch(error => alert("Une erreur s'est produite: " + error.message));
+            document.getElementById('tarea').value = '';
+            document.getElementById('numberPrs').value = '';
         }
     </script>
 
