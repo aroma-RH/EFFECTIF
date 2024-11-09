@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نموذج إدخال البيانات</title>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&display=swap');
+        
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #f4f4f9, #d9e4f5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+
+        /* Menu Styles */
+        .navbar {
+            width: 100%;
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            padding: 14px 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .dropdown {
+            float: left;
+            overflow: hidden;
+        }
+
+        .dropdown .dropbtn {
+            background-color: #333;
+            color: white;
+            padding: 14px 20px;
+            font-size: 17px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        #dataForm {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        h2 {
+            text-align: center;
+            color: #555;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            font-size: 0.95rem;
+            margin: 10px 0 5px;
+            color: #4a90e2;
+        }
+
+        .select2-container, input[type="text"], input[type="number"], input[type="date"] {
+            width: 100% !important;
+            padding: 12px;
+            margin: 8px 0 15px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            transition: box-shadow 0.2s ease;
+        }
+
+        input:focus, select:focus, .select2-container--default .select2-selection--single:focus {
+            outline: none;
+            box-shadow: 0px 0px 8px rgba(74, 144, 226, 0.5);
+            border-color: #4a90e2;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(45deg, #4a90e2, #357abd);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: linear-gradient(45deg, #357abd, #4a90e2);
+        }
+
+        @media (max-width: 500px) {
+            #dataForm {
+                padding: 1.5rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+        .nested-dropdown {
+            display: none;
+            margin-left: 20px;
+            padding-left: 20px;
+            background-color: #f1f1f1;
+            border-left: 2px solid #ddd;
+        }
+
+        .nested-dropdown a {
+            color: #555;
+            background-color: #f9f9f9;
+        }
+
+        .nested-dropdown a:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+
+  
+
+
+    <form id="dataForm">
+        <div class="dropdown">
+            <button class="dropbtn">MENU</button>
+            <div id="dropdownOptions" class="dropdown-content">
+                <a href="#" id="effectif1">EFFECTIF 1</a>
+                <!-- Nested dropdown content under EFFECTIF 1 -->
+                <div id="nestedEffectif1" class="nested-dropdown">
+                    <!-- Dynamically generated Finca options -->
+                    <a href="#" id="finca1">FINCA 01</a>
+                <a href="#" id="finca2">FINCA 02</a>
+                <a href="#" id="finca3">FINCA 03</a>
+                <a href="#" id="finca4">FINCA 04</a>
+                <a href="#" id="finca5">FINCA 05</a>
+                <a href="#" id="finca6">FINCA 06</a>
+                <a href="#" id="finca9">FINCA 09</a>
+                <a href="#" id="finca13">FINCA 13</a>
+                <a href="#" id="finca19">FINCA 19</a>
+                <a href="#" id="finca20">FINCA 20</a>
+                <a href="#" id="finca21">FINCA 21</a>
+                <a href="#" id="finca22">FINCA 22</a>
+                </div>
+                <a href="#">LA BASE</a>
+                <a href="#">SALAIRE</a>
+            </div>
+
+
+        <div style="clear: both;"></div>
+        <label for="equipe">Equipe:</label>
+        <select id="equipe" name="equipe" required>
+            <option value="">-- Choisissez une Équipe  --</option>
+            <option value="ABLHAOU RACHID">ABLHAOU RACHID</option>
+            <option value="ACHIK MOHAMED">ACHIK MOHAMED</option>
+            <option value="AGONI MOHAMED">AGONI MOHAMED</option>
+            <option value="AIT ELKADI TARIQ">AIT ELKADI TARIQ</option>
+            <option value="AIT LKADI MOHAMED">AIT LKADI MOHAMED</option>
+            <option value="ATTAQ ABDELTIF">ATTAQ ABDELTIF</option>
+            <option value="AZZI ADIL">AZZI ADIL</option>
+            <option value="BACHAD MBARK">BACHAD MBARK</option>
+            <option value="BILOU HAFID">BILOU HAFID</option>
+            <option value="BOUJAAJAT ABDELAH">BOUJAAJAT ABDELAH</option>
+            <option value="BOUSSAID MUSTAPHA">BOUSSAID MUSTAPHA</option>
+            <option value="BOUZIDI ABDELLAH">BOUZIDI ABDELLAH</option>
+            <option value="CHAHROU ABDERRAHMANE">CHAHROU ABDERRAHMANE</option>
+            <option value="CHLIH EL MOSTAFA">CHLIH EL MOSTAFA</option>
+            <option value="CONTROL FINCAS">CONTROL FINCAS</option>
+            <option value="DEMNATI ELHOUCINE">DEMNATI ELHOUCINE</option>
+            <option value="DEMNATI ELHOUSSAINE 2">DEMNATI ELHOUSSAINE 2</option>
+            <option value="EL ADRAOUI YASSINE">EL ADRAOUI YASSINE</option>
+            <option value="EL ASRI ABDELHADI">EL ASRI ABDELHADI</option>
+            <option value="EL BRIK EL MAHFOUD">EL BRIK EL MAHFOUD</option>
+            <option value="EL HAINE HOUSSINE">EL HAINE HOUSSINE</option>
+            <option value="EL HASNAOUI MOHCINE">EL HASNAOUI MOHCINE</option>
+            <option value="EL-OUARRAD ABDELLAH">EL-OUARRAD ABDELLAH</option>
+            <option value="ESBAI ZAKARIA">ESBAI ZAKARIA</option>
+            <option value="FARAHI OMAR">FARAHI OMAR</option>
+            <option value="FIKRI EL KOUCHIA">FIKRI EL KOUCHIA</option>
+            <option value="IFLIR MOHAMED">IFLIR MOHAMED</option>
+            <option value="LAALIOU HASSAN">LAALIOU HASSAN</option>
+            <option value="LACHHAB MOHAMED">LACHHAB MOHAMED</option>
+            <option value="LAGTAB YOUSSEF">LAGTAB YOUSSEF</option>
+            <option value="LBRIK NOUREDDINE">LBRIK NOUREDDINE</option>
+            <option value="MAGHEFERY M'HAMED">MAGHEFERY M'HAMED</option>
+            <option value="MANNI MHAMMED">MANNI MHAMMED</option>
+            <option value="OTHMANY RACHID 1">OTHMANY RACHID 1</option>
+            <option value="QAYSSI MUSTAPHA">QAYSSI MUSTAPHA</option>
+            <option value="RAFIAA (FOUAD)">RAFIAA (FOUAD)</option>
+            <option value="RIHANI YOUSSEF">RIHANI YOUSSEF</option>
+            <option value="S G F-13">S G F-13</option>
+            <option value="S G F-19">S G F-19</option>
+            <option value="S G F-2">S G F-2</option>
+            <option value="S G F-20 (FIXE)">S G F-20 (FIXE)</option>
+            <option value="S G F-20 (VARIABLE)">S G F-20 (VARIABLE)</option>
+            <option value="S G F-21">S G F-21</option>
+            <option value="S G F-22">S G F-22</option>
+            <option value="S G F-3">S G F-3</option>
+            <option value="S G F-4">S G F-4</option>
+            <option value="S G F-5">S G F-5</option>
+            <option value="S G F-6">S G F-6</option>
+            <option value="S G F-8">S G F-8</option>
+            <option value="S G F-9">S G F-9</option>
+            <option value="S G PEPENIER">S G PEPENIER</option>
+            <option value="SBOUL MOHAMED">SBOUL MOHAMED</option>
+            <option value="SEBBAN BRAHIM">SEBBAN BRAHIM</option>
+            <option value="STE DELTA MAY">STE DELTA MAY</option>
+            <option value="STE EL OMARI LARBI">STE EL OMARI LARBI</option>
+            <option value="STE TRANSPORT ISNDALN">STE TRANSPORT ISNDALN</option>
+            <option value="TIGHOULA HASSAN">TIGHOULA HASSAN</option>
+            <option value="TRACTOURISTE">TRACTOURISTE</option>
+            
+        </select>
+
+        <label for="finca" class="animated-label">Finca:</label>
+        <select id="finca" name="finca" required>
+            <option value="">--  Choisissez une Finca --</option>
+            <option value="Finca 1">Finca 1</option>
+            <option value="Finca 2">Finca 2</option>
+            <option value="Finca 3">Finca 3</option>
+            <option value="Finca 4">Finca 4</option>
+            <option value="Finca 5">Finca 5</option>
+            <option value="Finca 6">Finca 6</option>
+            <option value="Finca 9">Finca 9</option>
+            <option value="Finca 13">Finca 13</option>
+            <option value="Finca 19">Finca 19</option>
+            <option value="Finca 20">Finca 20</option>
+            <option value="Finca 21">Finca 21</option>
+            <option value="Finca 22">Finca 22</option>
+        </select>
+
+        <label for="date" class="animated-label">Date:</label>
+        <input type="date" id="date" name="date" value="" required>
+
+        <label for="tarea" class="animated-label">Tarea:</label>
+        <select id="tarea" name="tarea" required>
+            <option value="">-- Choisissez une Tâche  --</option>
+            <option value="Responsable">Responsable</option>
+    <option value="Pointeur">Pointeur</option>
+    <option value="Technicien">Technicien</option>
+    <option value="Gardien">Gardien</option>
+    <option value="Chef Caporal">Chef Caporal</option>
+    <option value="Caporal">Caporal</option>
+    <option value="Stationnaire">Stationnaire</option>
+    <option value="Irrigation">Irrigation</option>
+    <option value="Traitement">Traitement</option>
+    <option value="Controle Qualite">Controle Qualite</option>
+    <option value="Chauffeur de Tripoteur">Chauffeur de Tripoteur</option>
+    <option value="Menage">Menage</option>
+    <option value="Recolte">Recolte</option>
+    <option value="Desherbage">Desherbage</option>
+    <option value="Podar">Podar</option>
+    <option value="Nettoyage">Nettoyage</option>
+    <option value="Avec Tracteur">Avec Tracteur</option>
+    <option value="Avec Chariot">Avec Chariot</option>
+    <option value="Entretien Filet">Entretien Filet</option>
+    <option value="Entretien Culture">Entretien Culture</option>
+    <option value="Charge / Decharge">Charge / Decharge</option>
+    <option value="Destribution Caisse">Destribution Caisse</option>
+    <option value="Manipulation">Manipulation</option>
+    <option value="Entretien Baillons">Entretien Baillons</option>
+    <option value="Entretien Serre">Entretien Serre</option>
+    <option value="Feuillage">Feuillage</option>
+    <option value="Surveillance">Surveillance</option>
+    <option value="Controle Moteur de Gaze">Controle Moteur de Gaze</option>
+    <option value="Replantation">Replantation</option>
+    <option value="Plantation">Plantation</option>
+        </select>
+
+        <label for="numberPrs" class="animated-label">Number prs:</label>
+        <input type="number" id="numberPrs" name="numberPrs" required>
+
+        <button type="button" onclick="submitData()">Envoyer</button>
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+         // Toggle visibility of the main dropdown content
+    document.querySelector(".dropbtn").addEventListener("click", function() {
+        var dropdownContent = document.getElementById("dropdownOptions");
+        dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block";
+    });
+
+    // Toggle visibility of the nested dropdown under "EFFECTIF 1"
+    document.getElementById("effectif1").addEventListener("click", function(event) {
+        event.preventDefault();  // Prevent default link action
+        var nestedDropdown = document.getElementById("nestedEffectif1");
+        nestedDropdown.style.display = nestedDropdown.style.display === "block" ? "none" : "block";
+    });
+
+    // Close the dropdown if clicked outside
+    window.addEventListener("click", function(event) {
+        if (!event.target.matches('.dropbtn') && !event.target.matches('#effectif1')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.style.display === 'block') {
+                    openDropdown.style.display = 'none';
+                }
+            }
+        }
+    });
+        document.getElementById("date").value = new Date().toISOString().split('T')[0];
+
+        $(document).ready(function() {
+            $('#equipe').select2({
+                placeholder: "ابحث عن الفريق...",
+                allowClear: true
+            });
+            $('#finca').select2({
+                placeholder: "ابحث عن Finca...",
+                allowClear: true
+            });
+            $('#tarea').select2({
+                placeholder: "ابحث عن تاسك...",
+                allowClear: true
+            });
+        });
+
+        function submitData() {
+            const equipe = document.getElementById("equipe").value;
+            const finca = document.getElementById("finca").value;
+            const date = document.getElementById("date").value;
+            const tarea = document.getElementById("tarea").value;
+            const numberPrs = document.getElementById("numberPrs").value;
+
+            if (!equipe || !finca || !date || !tarea || !numberPrs) {
+                alert("Veuillez remplir tous les champs obligatoires.");
+                return;
+            }
+
+            const formData = {
+                equipe: equipe,
+                finca: finca,
+                date: date,
+                tarea: tarea,
+                numberPrs: numberPrs
+            };
+
+            fetch("https://script.google.com/macros/s/AKfycbzl0nGLPT42SJiH35I-UBqt01nstU5WJ9XORkh72ZGLg7qEhRJK_oKdvpMfMpQkMJEt/exec", {
+                method: "POST",
+                mode: "no-cors",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData)
+            })
+            .then(response => alert("Les données ont été envoyées avec succès!"))
+            .catch(error => alert("Une erreur s'est produite: " + error.message));
+        }
+    </script>
+
+</body>
+</html>
