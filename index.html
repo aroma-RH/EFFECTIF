@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>  effectif</title>
+    <title>Effectif</title>
 
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <style>
-        
         :root {
             --primary-color: #4a90e2;
             --secondary-color: #f9f9f9;
@@ -31,7 +30,33 @@
             
             transition: background-color 0.3s ease, color 0.3s ease;
         }
-        
+
+        /* Navigation Menu */
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 15px;
+            background-color: var(--secondary-color);
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            border-radius: 8px;
+            position: relative;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary-color);
+        }
+
         h1 {
             text-align: center;
             color: var(--primary-color);
@@ -81,7 +106,6 @@
             background-color: #357ab7;
         }
 
-       
         .confirmation-modal {
             display: none;
             position: fixed;
@@ -138,7 +162,6 @@
             color: #333;
         }
 
-       
         .theme-toggle {
             position: absolute;
             top: 15px;
@@ -158,24 +181,114 @@
             color: white;
         }
 
-       
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
+        }
+        /* Navigation Menu Styles */
+        .navbar {
+            display: flex;
+            margin-bottom: 30px;
+            
+            justify-content: center;
+            background-color: var(--primary-color);
+            padding: 10px;
+            
+        }
+
+        .navbar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar li {
+            position: relative;
+            margin: 0 15px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            font-size: 1rem;
+        }
+
+        .navbar li:hover > a {
+            background-color: #357ab7;
+            border-radius: 5px;
+        }
+
+        /* Submenu */
+        .navbar li ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--primary-color);
+            padding: 10px 0;
+            min-width: 150px;
+            border-radius: 5px;
+            z-index: 1000;
+        }
+
+        .navbar li:hover ul {
+            display: block;
+        }
+
+        .navbar li ul li {
+            margin: 0;
+        }
+
+        .navbar li ul a {
+            display: block;
+            padding: 8px 15px;
+            font-size: 0.9rem;
+        }
+
+        .navbar li ul a:hover {
+            background-color: #357ab7;
+            border-radius: 5px;
         }
     </style>
 </head>
 <body>
 
+    <div class="theme-toggle" onclick="toggleTheme()">🌙</div>
+
+    <!-- Navigation Menu -->
     
 
-   
-
     <div class="form-container">
-         <div class="theme-toggle" onclick="toggleTheme()">🌙</div>
+        <div class="theme-toggle" onclick="toggleTheme()">🌙</div>
+        <nav class="navbar">
+            <ul>
+                <li>
+                    <a href="#">Effectif</a>
+                    <ul>
+                        <li><a href="#">Finca 01</a></li>
+                        <li><a href="#">Finca 02</a></li>
+                        <li><a href="#">Finca 03</a></li>
+                        <li><a href="#">Finca 04</a></li>
+                        <li><a href="#">Finca 05</a></li>
+                        <li><a href="#">Finca 06</a></li>
+                        <li><a href="#">Finca 09</a></li>
+                        <li><a href="#">Finca 13</a></li>
+                        <li><a href="#">Finca 19</a></li>
+                        <li><a href="https://aroma-rh.github.io/F20/">Finca 20</a></li>
+                        <li><a href="#">Finca 21</a></li>
+                        <li><a href="#">Finca 22</a></li>
+                    </ul>
+                </li>
+                <li><a href="https://aroma-rh.github.io/LA-ABSE/">La Base</a></li>
+                <li><a href="#">Salaire</a></li>
+                <li><a href="#">Pointage</a></li>
+            </ul>
+        </nav>
         <form id="dataForm">
-            <div style="clear: both;"></div>
-        <label for="equipe">Equipe:</label>
+            <label for="equipe">Equipe:</label>
         <select id="equipe" name="equipe" required>
             <option value="">-- Choisissez une Équipe  --</option>
             <option value="ABLHAOU RACHID">ABLHAOU RACHID</option>
@@ -297,36 +410,33 @@
         <label for="numberPrs" class="animated-label">Number prs:</label>
         <input type="number" id="numberPrs" name="numberPrs" required>
 
-
             <button type="button" onclick="submitData()">Envoyer</button>
         </form>
     </div>
 
-    
     <div class="confirmation-modal" id="confirmationModal">
         <div class="modal-content">
-            <h3> Confirmer les données</h3>
+            <h3>Confirmer les données</h3>
             <p id="confirmationText"></p>
+            
+            <button class="cancel-button" onclick="closeConfirmation()">Annuler</button>
             <button class="confirm-button" onclick="confirmSubmit()">Confirmer</button>
-            <button class="cancel-button" onclick="closeConfirmation()">annuler</button>
         </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
-
         $(document).ready(function() {
             $('#equipe, #tarea').select2();
         });
 
-      
         function toggleTheme() {
             const currentTheme = document.documentElement.getAttribute("data-theme");
             document.documentElement.setAttribute("data-theme", currentTheme === "dark" ? "light" : "dark");
         }
         document.getElementById("date").value = new Date().toISOString().split('T')[0];
-      
+
         function submitData() {
             const equipe = document.getElementById("equipe").value;
             const finca = document.getElementById("finca").value;
@@ -350,7 +460,6 @@
             document.getElementById("confirmationModal").style.display = "flex";
         }
 
-        
         function confirmSubmit() {
             const equipe = document.getElementById("equipe").value;
             const finca = document.getElementById("finca").value;
@@ -373,14 +482,13 @@
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData)
             })
-            .then(response => alert("Données envoyées avec succès !"))
+            
             .catch(error => alert("erreur: " + error.message));
 
             closeConfirmation();
-            
+            document.getElementById("numberPrs").value=""
         }
 
-        
         function closeConfirmation() {
             document.getElementById("confirmationModal").style.display = "none";
         }
